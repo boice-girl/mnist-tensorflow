@@ -21,8 +21,8 @@ def evaluate(mnist):
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
         # 通过变量重命名的方式加载模型,这样就不用调用滑动平均的函数来获取平均值了
         variable_averages = tf.train.ExponentialMovingAverage(mnist_train.MOVING_AVERAGE_DECAY)
-        variable_to_restore = variable_averages.variables_to_restore()
-        saver = tf.train.Saver(variable_to_restore)
+        variables_to_restore = variable_averages.variables_to_restore()
+        saver = tf.train.Saver(variables_to_restore)
         
         while True:
             with tf.Session() as sess:
